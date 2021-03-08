@@ -19,7 +19,7 @@ function Header() {
              <IconButton>
                 <ForumIcon
                 className='header__icon'
-                fontSiez='large'/>
+                fontSize='large'/>
              </IconButton>
              
         </div>
