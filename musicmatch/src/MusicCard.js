@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MusicCards.css';
+import axios from './axios.js';
 
 import TinderCard from 'react-tinder-card';
 
 function MusicCard() {
-    const [music,setMusic] = useState([
-        {
-            name: 'Rock',
-            url: 'https://images-na.ssl-images-amazon.com/images/I/8158TsXvQ%2BL._AC_SX466_.jpg',
-        },
-        {
-            name: 'Classic',
-            url: 'https://thumbs.dreamstime.com/x/classical-music-15401762.jpg',
-        },
-    ]);
+    const [music,setMusic] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get("/musicmatch/card");
+
+            setMusic(req.data);
+        }
+
+        fetchData();
+    }, []);
 
     const swiped = (direction,nameToDelete) => {
         console.log("removing" + nameToDelete);
@@ -37,7 +38,7 @@ function MusicCard() {
                      onCardLeftScreen={()=>outOfFrame(music.name)}>
                         <div
                          style={{
-                             backgroundImage:`url(${music.url})`
+                             backgroundImage:`url(${music.imgUrl})`
                          }}
                          className='card'>
                              <h3>{music.name}</h3>

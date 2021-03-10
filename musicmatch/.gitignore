@@ -12,6 +12,8 @@
 /build
 
 # misc
+../backend/pass.txt
+pass.txt
 .DS_Store
 .env.local
 .env.development.local
