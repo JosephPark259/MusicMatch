@@ -5,7 +5,8 @@ import axios from './axios.js';
 import TinderCard from 'react-tinder-card';
 
 function MusicCard() {
-    const [music,setMusic] = useState([]);
+    const [music,setMusic] = useState([[]]);
+    const [cardIdx,setCardIdx] = useState(0);
     useEffect(() => {
         async function fetchData() {
             const req = await axios.get("/musicmatch/card");
@@ -17,7 +18,27 @@ function MusicCard() {
     }, []);
 
     const swiped = (direction,nameToDelete) => {
-        console.log("removing" + nameToDelete);
+        var index = cardIdx;
+        if(direction === 'right'){
+            if(cardIdx < music.length-1){         
+                index += 1;
+                setCardIdx(index);
+                
+            } else {
+                index = 0;
+                setCardIdx(index);
+            }
+        }
+        if(direction === "left"){
+            if (cardIdx === 0) {
+                index = music.length-1;
+                setCardIdx(index);
+            } else {
+                index -= 1;
+                setCardIdx(index);
+            }
+        }
+        
         //setLastDirection(direction);
     }
 
@@ -28,24 +49,23 @@ function MusicCard() {
     return (
         <div className='music-cards'>
             <div className='musicCards__cardContainer'>
-            {
-                music.map((music) => (
+
                     <TinderCard
                      className='swipe'
-                     key={music.name}
+                     key={music[cardIdx].name}
                      preventSwipe={['up','down']}
-                     onSwipe={(dir)=>swiped(dir,music.name)}
-                     onCardLeftScreen={()=>outOfFrame(music.name)}>
+                     onSwipe={(dir)=>swiped(dir,music[cardIdx])}
+                     onCardLeftScreen={()=>outOfFrame(music[cardIdx].name)}>
                         <div
                          style={{
-                             backgroundImage:`url(${music.imgUrl})`
+                             backgroundImage:`url(${music[cardIdx].imgUrl})`
                          }}
                          className='card'>
-                             <h3>{music.name}</h3>
+                             <h3>{music[cardIdx].name}</h3>
                         </div>
+                        
                     </TinderCard>
-                ))
-            }
+
             </div> 
             
         </div>
