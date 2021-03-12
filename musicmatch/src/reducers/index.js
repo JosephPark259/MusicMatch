@@ -1,8 +1,10 @@
-import addPlayist from './addPlayist';
+import index from './indexChange';
+import genreLength from './genreLength';
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
-    addPlayist: addPlayist
+    idx: index,
+    genreLength: genreLength
 });
 
 export default allReducers;
