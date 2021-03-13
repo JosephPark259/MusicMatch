@@ -3,11 +3,14 @@ import mongoose from 'mongoose';
 import cards from './schema/dbCards.js';
 import cors from 'cors';
 
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config();
+
 //App Config
 const app = express();
 const port =  process.env.PORT || 3001;
 const connection_url = `mongodb+srv://admin:${process.env.MONGO_PASS}@cluster0.bvf8g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
 //Middlewares
 app.use(cors());
 app.use(express.json())
@@ -35,7 +38,7 @@ app.post('/musicmatch/card',(req,res) => {
 
 // get ALL cards
 app.get('/musicmatch/card',(req,res) => {
-
+    console.log(req.params.id)
     cards.find((err, data) => {
         if (err) {
             res.status(500).send(err);
@@ -44,5 +47,6 @@ app.get('/musicmatch/card',(req,res) => {
         }
     });
 });
+
 //Listener
 app.listen(port, () => console.log(`listening on port: ${port}`));

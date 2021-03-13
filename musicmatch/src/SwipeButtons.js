@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import './SwipeButtons.css'
+import axios from './axios.js';
+import './SwipeButtons.css';
+import dotenv from 'dotenv';
 
 import StarIcon from '@material-ui/icons/Star';
 import ReplayIcon from '@material-ui/icons/Replay';
@@ -8,11 +10,13 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
+
 import { useSelector, useDispatch} from 'react-redux';
 import {increment, decrement,lengthset,reset,genreLength} from './action/index.js';
 
 //undo X star heart electric
 function SwipeButtons() {
+    dotenv.config();
     const idx = useSelector(state => state.idx);
     const dispatch = useDispatch();
     const genreListLength = useSelector(state => state.genreLength);
@@ -25,12 +29,16 @@ function SwipeButtons() {
         }
     }
     const incIdx = () => {
-        console.log(genreListLength)
         if (idx == genreListLength) {
             dispatch(reset(0))
         } else {
             dispatch(increment());
         }
+        async function fetchData() {
+            //const req = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=joji&key=${process.env.YOUTUBE_API}`)
+            console.log(process.env.YOUTUBE_API);
+        }
+        fetchData();
     }
     
     return (

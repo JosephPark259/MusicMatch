@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MusicCards.css';
-import axios from './axios.js';
-
+import axiosBase from './axios.js';
 
 import { useSelector, useDispatch} from 'react-redux';
 import TinderCard from 'react-tinder-card';
@@ -14,30 +13,26 @@ function MusicCard() {
     const genreListLength = useSelector(state => state.genreLength);
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         async function fetchData() {
-            const req = await axios.get("/musicmatch/card");
+            const req = await axiosBase.get(`/musicmatch/card`);
             dispatch(genreLength(req.data.length-1));
             setMusic(req.data);
-            
         }
 
         fetchData();
     }, []);
 
     const swiped = (direction,nameToDelete) => {
-
+        console.log(process.env.REACT_APP_YOUTUBE_API)
         if(direction === 'right'){
             if(idx < music.length-1){         
-
                 setCardIdx(idx);
                 dispatch(increment());
-                
             } else {
-
                 setCardIdx(idx);
                 dispatch(reset(0));
-                
             }
         }
         if(direction === "left"){
