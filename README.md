@@ -3,7 +3,7 @@ Find the song you want to listen to
 
 Uses Youtube  API to find the song that you want to listen to
 
-Demo:
+## Demo:
 ![image](https://user-images.githubusercontent.com/32422763/111095444-b21f0580-84fa-11eb-9f67-a9a25264428b.png)
 
 ## Swip right and see top song for genre:
