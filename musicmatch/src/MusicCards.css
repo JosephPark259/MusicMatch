@@ -36,3 +36,29 @@
     margin: 10px;
     color: white;
 }
+.paper {
+    display:flex;
+    flex-direction: column;
+    
+    width: 50%;
+    height: 50%;
+}
+.title {
+    align-self: center;
+    
+}
+.button {
+    align-self: center;
+    justify-content: space-between;
+    margin: 10px;
+    padding:20px;
+}
+
+.youtube-container {
+    display:flex;
+    flex-direction: column;
+}
+
+.youtube-thumbnail {
+    align-self: center;
+}

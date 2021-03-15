@@ -38,7 +38,7 @@ app.post('/musicmatch/card',(req,res) => {
 
 // get ALL cards
 app.get('/musicmatch/card',(req,res) => {
-    console.log(req.params.id)
+
     cards.find((err, data) => {
         if (err) {
             res.status(500).send(err);

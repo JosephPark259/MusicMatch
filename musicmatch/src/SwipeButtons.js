@@ -35,8 +35,8 @@ function SwipeButtons() {
             dispatch(increment());
         }
         async function fetchData() {
-            //const req = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=joji&key=${process.env.YOUTUBE_API}`)
-            console.log(process.env.YOUTUBE_API);
+            
+            
         }
         fetchData();
     }
